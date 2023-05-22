@@ -6,7 +6,6 @@ import com.example.Polling.Modle.Poll;
 import com.example.Polling.Modle.PollChoice;
 import com.example.Polling.Repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,12 +14,9 @@ import java.util.*;
 
 @Service
 public class PollService {
-     @Autowired
-     PollRepository pollRepository;
+    @Autowired
+    PollRepository pollRepository;
 
-    public PollService(PollRepository pollRepository) {
-        this.pollRepository = pollRepository;
-    }
 
     public void createPoll(PollCreationDto pollDto) {
         Poll poll = new Poll();
@@ -40,6 +36,7 @@ public class PollService {
 
         pollRepository.save(poll);
     }
+
     //////////////
     public void voteOnPoll(Long pollId, String choice) {
         Optional<Poll> optionalPoll = pollRepository.findById(pollId);
@@ -59,6 +56,7 @@ public class PollService {
             throw new IllegalArgumentException("Poll not found with ID: " + pollId);
         }
     }
+
     public PollResultDto getPollResults(Long pollId) {
         Poll poll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Poll not found with id: " + pollId));
@@ -76,4 +74,12 @@ public class PollService {
 
         return new PollResultDto(poll.getQuestion(), results, totalVotes);
     }
+    public void deletePollByID(Long id) {
+        Poll pollToDelete = pollRepository.findById(id).get();
+    }
 }
+
+
+
+
+

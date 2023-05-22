@@ -33,4 +33,10 @@ public class PollController {
         PollResultDto pollResult = pollService.getPollResults(pollId);
         return ResponseEntity.ok(pollResult);
     }
+    @RequestMapping(value = "/deleteBYId", method = RequestMethod.GET)
+    public void deletePollByID(Long id) {
+        pollService.deletePollByID(id);
+    }
+
+
 }
