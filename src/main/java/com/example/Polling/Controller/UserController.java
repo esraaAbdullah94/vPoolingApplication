@@ -23,4 +23,5 @@ public class UserController {
         userService.deleteAllUser();
         return "ALL User isActive=false";
     }
+
 }
