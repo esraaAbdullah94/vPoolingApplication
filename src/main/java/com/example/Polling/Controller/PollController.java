@@ -20,7 +20,7 @@ public class PollController {
     @PostMapping("/polls")
     public ResponseEntity<String> createPoll(@RequestBody PollCreationDto pollDto) {
         pollService.createPoll(pollDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Poll created successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Peaoll crted successfully");
     }
 
     @PostMapping("/{pollId}/vote")
@@ -37,6 +37,7 @@ public class PollController {
     public void deletePollByID(Long id) {
         pollService.deletePollByID(id);
     }
+
 
 
 }

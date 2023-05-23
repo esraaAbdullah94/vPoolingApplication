@@ -56,7 +56,7 @@ public class PollService {
             throw new IllegalArgumentException("Poll not found with ID: " + pollId);
         }
     }
-
+//this method retrieves a poll by its ID, calculates the vote counts for each choice, and returns the results encapsulated in a PollResultDto object.
     public PollResultDto getPollResults(Long pollId) {
         Poll poll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Poll not found with id: " + pollId));
@@ -74,6 +74,7 @@ public class PollService {
 
         return new PollResultDto(poll.getQuestion(), results, totalVotes);
     }
+
     public void deletePollByID(Long id) {
         Poll pollToDelete = pollRepository.findById(id).get();
     }

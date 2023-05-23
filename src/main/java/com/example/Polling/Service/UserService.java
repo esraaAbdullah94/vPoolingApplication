@@ -23,4 +23,8 @@ public class UserService {
 
         return userRepository.save(user);
     }
+    public void deleteAllUser() {
+        userRepository.deleteAll();
+
+    }
 }
